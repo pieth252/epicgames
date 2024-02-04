@@ -1,9 +1,6 @@
 package at.kaindorf.epicgames.pojos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Feature implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feature_id")
     private Integer featureId;
     @NotNull
     @Column(length = 50)
     private String name;
-    @ManyToMany(mappedBy = "games")
-    @ToString.Exclude
-    private Set<Game> games;
 }

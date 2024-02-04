@@ -1,12 +1,11 @@
 package at.kaindorf.epicgames.pojos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -16,6 +15,7 @@ import java.io.Serializable;
 public class Publisher implements Serializable {
     @Id
     @Column(name = "publisher_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer publisherId;
     @Column(length = 100)
     private String name;

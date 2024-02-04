@@ -1,9 +1,9 @@
 package at.kaindorf.epicgames.pojos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,11 +18,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class Tag implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tag_id")
     private Integer tagId;
     @NotNull
     private String name;
-    @ManyToMany(mappedBy = "games")
+    @ManyToMany(mappedBy = "tags")
     @ToString.Exclude
     private Set<Game> games;
 
